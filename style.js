@@ -84,6 +84,7 @@ export default StyleSheet.create({
     },
 
     sectionTextStyle: {
+        textAlign: "center",
         fontSize: FONT_SIZE
     }
 });
