@@ -17,12 +17,14 @@ import {
 
 import styles from './style';
 import BaseComponent from './BaseComponent';
+import Icon from "react-native-vector-icons/Ionicons";
 
 let componentIndex = 0;
 
 const propTypes = {
     data: PropTypes.array,
     onChange: PropTypes.func,
+    enabled: PropTypes.bool,
     initValue: PropTypes.string,
     style: View.propTypes.style,
     selectStyle: View.propTypes.style,
@@ -39,6 +41,7 @@ const propTypes = {
 const defaultProps = {
     data: [],
     onChange: ()=> {},
+    enabled: true,
     initValue: 'Select me!',
     style: {},
     selectStyle: {},
@@ -80,6 +83,9 @@ export default class ModalPicker extends BaseComponent {
 
     componentWillReceiveProps(nextProps) {
       if (nextProps.initValue != this.props.initValue) {
+        this.setState({selected: nextProps.initValue});
+      }
+      if (JSON.stringify(nextProps.data) != JSON.stringify(this.props.data)) {
         this.setState({selected: nextProps.initValue});
       }
     }
@@ -156,6 +162,7 @@ export default class ModalPicker extends BaseComponent {
         return (
             <View style={[styles.selectStyle, this.props.selectStyle]}>
                 <Text style={[styles.selectTextStyle, this.props.selectTextStyle]}>{this.state.selected}</Text>
+                <Icon style={styles.iconStyle} name={ "ios-arrow-down" } />
             </View>
         );
     }
@@ -171,7 +178,7 @@ export default class ModalPicker extends BaseComponent {
         return (
             <View style={this.props.style}>
                 {dp}
-                <TouchableOpacity onPress={this.open}>
+                <TouchableOpacity disabled={!this.props.enabled} onPress={this.open}>
                     {this.renderChildren()}
                 </TouchableOpacity>
             </View>

@@ -37,11 +37,13 @@ export default StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         padding: 8,
-        borderRadius: BORDER_RADIUS
+        borderRadius: BORDER_RADIUS,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
     },
 
     selectTextStyle: {
-        textAlign: 'center',
         color: '#333',
         fontSize: FONT_SIZE
     },
@@ -57,6 +59,10 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: '#333',
         fontSize: FONT_SIZE
+    },
+
+    iconStyle: {
+      fontSize: FONT_SIZE
     },
 
     optionStyle: {
@@ -78,7 +84,6 @@ export default StyleSheet.create({
     },
 
     sectionTextStyle: {
-        textAlign: 'center',
         fontSize: FONT_SIZE
     }
 });
